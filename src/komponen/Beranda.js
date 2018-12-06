@@ -48,7 +48,7 @@ class Beranda extends Component {
             return (
                 <div key={i} className='card col-xs-2 col-sm-2 col-md-2 col-lg-2'
                 style={{width: '18rem'}}>
-                <Link to={'/' + nama}>
+                <Link to={'/team/' + nama}>
                     <img className='card-img-top img-thumbnail' 
                     alt='badge' src={logo} 
                     // style={{width: '50%', height: '50%'}}

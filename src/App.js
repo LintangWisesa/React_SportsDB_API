@@ -14,7 +14,8 @@ class App extends Component {
           </a>
         <div>
           <Route exact path='/' component={Beranda}/>
-          <Route path='/:profil' component={ProfilKlub}/>
+          <Route path='/kontak' component={Kontak}/>
+          <Route path='/team/:profil' component={ProfilKlub}/>
         </div>
         <Footer/>
       </div>

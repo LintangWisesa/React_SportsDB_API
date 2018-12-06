@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import Kontak from './komponen/Kontak'
 import Beranda from './komponen/Beranda'
 import ProfilKlub from './komponen/ProfilKlub'
+import Footer from './komponen/Footer'
 
 class App extends Component {
   render(){
@@ -16,6 +17,7 @@ class App extends Component {
           <Route path='/kontak' component={Kontak}/>
           <Route path='/:profil' component={ProfilKlub}/>
         </div>
+        <Footer/>
       </div>
     )
   }

@@ -7,8 +7,10 @@ import ProfilKlub from './komponen/ProfilKlub'
 class App extends Component {
   render(){
     return(
-      <div>
-        <h1>Klubola.kom</h1>
+      <div className='container'>
+          <a href='/'>
+            <h1 className='mt-5'>Klubola.kom</h1>
+          </a>
         <div>
           <Route exact path='/' component={Beranda}/>
           <Route path='/kontak' component={Kontak}/>

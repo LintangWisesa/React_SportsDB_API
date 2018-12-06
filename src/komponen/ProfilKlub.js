@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import lin from './../img/lin.jpg'
 
 class ProfilKlub extends Component {
     state = {
+        loading: <img alt='loading' src='https://loading.io/spinners/spin/lg.ajax-spinner-gif.gif'/>,
         players: []
     }
 
@@ -13,7 +15,10 @@ class ProfilKlub extends Component {
         axios.get(link)
         .then((x)=>{
             console.log(x.data.player)
-            this.setState({players: x.data.player})
+            this.setState({
+                loading: '',
+                players: x.data.player
+            })
         })
         .catch((x)=>{console.log(x)})
     }
@@ -24,16 +29,17 @@ class ProfilKlub extends Component {
             var nama = val.strPlayer
             var country = val.strNationality
             var foto = val.strThumb
+            var foto2 = lin 
             return (
-                <div key={i} className='card col-xs-3 col-sm-3 col-md-3 col-lg-3'
+                <div key={i} className='card col-xs-2 col-sm-2 col-md-2 col-lg-2'
                 style={{width: '18rem'}}>
                     <img className='card-img-top img-thumbnail' 
-                    alt='badge' src={foto} 
+                    alt='badge' src={foto ? foto : foto2 } 
                     // style={{width: '50%', height: '50%'}}
                     />
                     <div className='card-body'>
-                        <h4 className='card-text'>{nama}</h4>
-                        <h4 className='card-text'>{country}</h4>
+                        <h6 className='card-text'>{nama}</h6>
+                        <i className='card-text'>{country}</i>
                     </div>
                 </div>
             )
@@ -41,7 +47,8 @@ class ProfilKlub extends Component {
 
         return(
             <div>
-                <h4>Halaman Profil Klub</h4>
+                <h4 className='mb-5'>Halaman Daftar Pemain</h4>
+                {this.state.loading}
                 <div className='row'>
                     {pemain}
                 </div>

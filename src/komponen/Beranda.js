@@ -6,6 +6,7 @@ class Beranda extends Component {
     constructor(){
         super()
         this.state = {
+            loading: <img alt='loading' src='https://loading.io/spinners/spin/lg.ajax-spinner-gif.gif'/>,
             klub: []
         }
     }
@@ -13,7 +14,10 @@ class Beranda extends Component {
         var url = 'https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?s=Soccer&c=Spain'
         axios.get(url)
         .then((x)=>{
-            this.setState({klub: x.data.teams})
+            this.setState({
+                loading: '',
+                klub: x.data.teams
+            })
             console.log(this.state.klub)
         })
         .catch((x)=>{console.log(x)})
@@ -24,7 +28,7 @@ class Beranda extends Component {
             var nama = val.strTeam
             var logo = val.strTeamBadge
             return (
-                <div key={i} className='card col-xs-3 col-sm-3 col-md-3 col-lg-3'
+                <div key={i} className='card col-xs-2 col-sm-2 col-md-2 col-lg-2'
                 style={{width: '18rem'}}>
                 <Link to={'/' + nama}>
                     <img className='card-img-top img-thumbnail' 
@@ -32,7 +36,7 @@ class Beranda extends Component {
                     // style={{width: '50%', height: '50%'}}
                     />
                     <div className='card-body'>
-                        <h2 className='card-text'>{nama}</h2>
+                        <h5 className='card-text'>{nama}</h5>
                     </div>
                 </Link>
                 </div>
@@ -41,7 +45,8 @@ class Beranda extends Component {
 
         return(
             <div>
-                <h4>Ini Beranda</h4>
+                <h4 className='mb-5'>Halaman Beranda</h4>
+                {this.state.loading}
                 <div className='row'>{galeri}</div>
             </div>
         )

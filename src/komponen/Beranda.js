@@ -22,6 +22,24 @@ class Beranda extends Component {
         })
         .catch((x)=>{console.log(x)})
     }
+
+    opsiLiga = (x) => {
+        this.setState({
+            loading: <img alt='loading' src='https://loading.io/spinners/spin/lg.ajax-spinner-gif.gif'/>,
+            klub: []
+        })
+        var url = `https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?${x}`
+        axios.get(url)
+        .then((x)=>{
+            this.setState({
+                loading: '',
+                klub: x.data.teams
+            })
+            console.log(this.state.klub)
+        })
+        .catch((x)=>{console.log(x)})
+    }
+
     render(){
 
         var galeri = this.state.klub.map((val, i)=>{
@@ -45,7 +63,18 @@ class Beranda extends Component {
 
         return(
             <div>
-                <h4 className='mb-5'>Halaman Beranda</h4>
+                <h4>Halaman Beranda</h4>
+                <select className='mb-5' onChange={(e)=>{
+                    console.log(e.target.value)
+                    this.opsiLiga(e.target.value)
+                    }
+                }
+                >
+                    <option value='s=Soccer&c=Spain'>LaLiga Spanyol</option>
+                    <option value='l=English%20Premier%20League'>Premier League Inggris</option>
+                    <option value='l=German%20Bundesliga'>Bundes Liga Jerman</option>
+                </select>
+                <br/>
                 {this.state.loading}
                 <div className='row'>{galeri}</div>
             </div>
